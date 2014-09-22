@@ -11,7 +11,7 @@
 ##
 ## How to use this function:
 ## 
-## y <- makeCacheMatrix()
+## x <- makeCacheMatrix(matrix(1:16,4,4)) - NB: the matrix must be square
 
 makeCacheMatrix <- function(x = matrix()) {
 
@@ -41,7 +41,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ## x <- makeCacheMatrix(rnorm(16),4,4) (NB: the matrix must be square)
 ## cacheSolve(x)
 ##
-## Notice that if you then run cacheSolve again, you get "Getting cached..."
+## Notice that if you then run cacheSolve again, you get 
+## "Getting cached data"
 
 
 cacheSolve <- function(x, ...) {

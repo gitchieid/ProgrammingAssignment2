@@ -7,7 +7,7 @@
 ##       1) set, 
 ##       2) get, 
 ##       3) setinverse, and 
-##       4  getinverse.
+##       4) getinverse.
 ##
 ## How to use this function:
 ## 

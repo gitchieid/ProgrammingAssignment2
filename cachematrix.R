@@ -9,20 +9,19 @@
 ##       3) setinverse, and 
 ##       4) getinverse.
 ##
-## How to use this function:
-## 
-## x <- makeCacheMatrix(matrix(1:16,4,4)) - NB: the matrix must be square
+
 
 makeCacheMatrix <- function(x = matrix()) {
 
 	i <- NULL
 	set <- function(y) {
 
-		x <<- y
-		i <<- NULL
+		x <<- y                                 ## The <<- operator stores the value of the matrix in the global environment.
+		i <<- NULL                              ## We create a placeholder for the inverse in the global environment and initialize it to NULL.
+		                                        ## Later, if we check and i is still NULL, we know the inverse hasn't been calculated, yet.
 
 	}
-	get <- function() xx
+	get <- function() x
 	setinverse <- function(inverse) i <<- inverse
 	getinverse <- function() i
 	list(set = set, get = get,
@@ -38,10 +37,12 @@ makeCacheMatrix <- function(x = matrix()) {
 ##
 ## Example:
 ##
-## x <- makeCacheMatrix(rnorm(16),4,4) (NB: the matrix must be square)
+## x <- makeCacheMatrix()
+## x$set(matrix(rnorm(1024),32,32))  ## a random square matrix
 ## cacheSolve(x)
+## 
 ##
-## Notice that if you then run cacheSolve again, you get 
+## Notice that if you then run cacheSolve again, you get the message
 ## "Getting cached data"
 
 
@@ -49,9 +50,9 @@ cacheSolve <- function(x, ...) {
 	## Return a matrix that is the inverse of 'x'
 
 	i <- x$getinverse()
-	if(!is.null(i)) {
+	if(!is.null(i)) {                       ## We have already calculated the inverse
 		message("Getting cached data")
-		return(i)
+		return(i)                       ## This terminates the function
 	}
 	data <- x$get()
 	i <- solve(data)
